@@ -3,27 +3,44 @@
 
 <?php
 
+$errors = [];
+
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $conn = db_connent();
 
-    $title = mysqli_escape_string($conn, $_POST['title']);
-    $content = mysqli_escape_string($conn, $_POST['content']);
-    $published_at = mysqli_escape_string($conn, $_POST['published_at']);
+    // get form values
+    $title =  $_POST['title'];
+    $content =  $_POST['content'];
+    $published_at =  $_POST['published_at'];
 
-    $sql = "INSERT INTO article (title,content,published_at)
+    // check for errors
+
+    if ($title == '') {
+        $errors[] = 'Title is required';
+    }
+
+    if ($content == '') {
+        $errors[] = 'Content is required';
+    }
+
+    if (empty($errors)) {
+
+        $sql = "INSERT INTO article (title,content,published_at)
             VALUES (?,?,?)";
 
-    $stmt = mysqli_prepare($conn, $sql);
+        $stmt = mysqli_prepare($conn, $sql);
 
-    if ($stmt === false) {
-        echo mysqli_error($conn);
-    } else {
-        mysqli_stmt_bind_param($stmt, "sss", $title, $content, $published_at);
-        if (mysqli_stmt_execute($stmt)) {
-            $id = mysqli_insert_id($conn);
-            echo "Inserted record with ID: $id";
+        if ($stmt === false) {
+            echo mysqli_error($conn);
         } else {
-            mysqli_stmt_error($stmt);
+            mysqli_stmt_bind_param($stmt, "sss", $title, $content, $published_at);
+            if (mysqli_stmt_execute($stmt)) {
+                $id = mysqli_insert_id($conn);
+                echo "Inserted record with ID: $id";
+            } else {
+                mysqli_stmt_error($stmt);
+            }
         }
     }
 }
@@ -33,7 +50,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <div class="w-75 m-auto">
 
     <h1 class="display-3 mb-5">New article</h1>
+    <?php if (!empty($errors)) : ?>
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                <?php foreach ($errors as $error) : ?>
+                    <li><?= $error; ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
 
+
+    ?>
     <form method="POST">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
