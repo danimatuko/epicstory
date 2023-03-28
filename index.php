@@ -21,6 +21,8 @@ if ($resluts === false) {
 
 
 <h1 class="display-3 mb-5">My blog</h1>
+
+
 <?php if (empty($articles)) : ?>
     <p>No articles found.</p>
 <?php else : ?>

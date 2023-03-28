@@ -21,14 +21,11 @@ if (isset($_GET['id'])) {
 <?php if (($article === null)) : ?>
     <p>No article found.</p>
 <?php else : ?>
-    <ul>
-        <li>
-            <article>
-                <h2><?= htmlspecialchars($article['title']); ?></h2>
-                <p><?= htmlspecialchars($article['content']); ?></p>
-            </article>
-        </li>
-    </ul>
+    <article>
+        <h1><?= htmlspecialchars($article['title']); ?></h1>
+        <p><?= htmlspecialchars($article['content']); ?></p>
+    </article>
+    <a href="edit-article.php?id=<?= $article['id']; ?>">Edit</a>
 <?php endif; ?>
 
 <?php require 'includes/footer.php'; ?>
