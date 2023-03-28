@@ -47,9 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 }
-
 ?>
-
 <div class="w-50 m-auto">
 
     <h1 class="display-3 mb-5">New article</h1>
@@ -67,12 +65,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <form method="POST">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control" id="name" name="title" value="<?= $title ?>">
+            <input type="text" class="form-control" id="name" name="title" value="<?= htmlspecialchars($title); ?>">
         </div>
         <div class="mb-3">
             <label for="content">Content</label>
             <textarea class="form-control" placeholder="Write a content here" id="content" name="content" rows=4>
-                <?= $content; ?>
+                <?= htmlspecialchars($content); ?>
             </textarea>
         </div>
         <div class="mb-3">

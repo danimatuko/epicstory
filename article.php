@@ -26,16 +26,16 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
 <h1 class="display-3 mb-5">My blog</h1>
 <?php if (($article === null)) : ?>
-    <p>No article found.</p>
+<p>No article found.</p>
 <?php else : ?>
-    <ul>
-        <li>
-            <article>
-                <h2><?= $article['title'] ?></h2>
-                <p><?= $article['content'] ?></p>
-            </article>
-        </li>
-    </ul>
+<ul>
+    <li>
+        <article>
+            <h2><?= htmlspecialchars ($article['title']); ?></h2>
+            <p><?=htmlspecialchars($article['content']); ?></p>
+        </article>
+    </li>
+</ul>
 <?php endif; ?>
 
 <?php require 'includes/footer.php'; ?>

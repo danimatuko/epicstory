@@ -29,9 +29,9 @@ if ($resluts === false) {
             <li class="list-group-item">
                 <article>
                     <a href="article.php?id=<?= $article['id']; ?>">
-                        <h2 class="display-6"><?= $article['title']; ?></h2>
+                        <h2 class="display-6"><?= htmlspecialchars($article['title']); ?></h2>
                     </a>
-                    <p><?= $article['content']; ?></p>
+                    <p><?= htmlspecialchars($article['content']); ?></p>
                 </article>
             </li>
         <?php endforeach; ?>
