@@ -1,9 +1,8 @@
 <?php require 'includes/database.php'; ?>
 <?php require 'includes/header.php'; ?>
+<?php require 'includes/article.php'; ?>
 
 <?php
-
-$errors = [];
 
 $title =  '';
 $content =  '';
@@ -11,23 +10,12 @@ $published_at = '';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $conn = db_connent();
-
     // get form values
     $title =  $_POST['title'];
     $content =  trim($_POST['content']); // remove whitespaces cauesd by the html formatting
     $published_at =  $_POST['published_at'];
 
-    // check for errors
-
-    if ($title == '') {
-        $errors[] = 'Title is required';
-    }
-
-    if ($content == '') {
-        $errors[] = 'Content is required';
-    }
-
-
+    $errors = validate_article($title, $content, $published_at);
 
     if (empty($errors)) {
 

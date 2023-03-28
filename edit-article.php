@@ -14,15 +14,29 @@ if (isset($_GET['id'])) {
         $content =  $article['content'];
         $published_at = $article['published_at'];
     } else {
-        die("aricle not found");
+        exit("aricle not found");
     }
 } else {
 
-    die("id not supplied,aricle not found");
+    exit("id not supplied,aricle not found");
+}
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $conn = db_connent();
+    // get form values
+    $title =  $_POST['title'];
+    $content =  trim($_POST['content']); // remove whitespaces cauesd by the html formatting
+    $published_at =  $_POST['published_at'];
+
+    $errors = validate_article($title, $content, $published_at);
+
+
+    if (empty($errors)) {
+        exit('form is valid');
+    }
 }
 
 ?>
-
 
 <div class="w-50 m-auto">
 
