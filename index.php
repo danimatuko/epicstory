@@ -1,11 +1,13 @@
 <?php
 
 require 'includes/header.php';
-require 'includes/database.php'; ?>
+require 'includes/database.php';
 
-<?php $conn = db_connent(); ?>
+?>
 
 <?php
+
+$conn = db_connent();
 
 $sql = "SELECT * 
         FROM article 
