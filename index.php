@@ -3,26 +3,19 @@
 require 'includes/header.php';
 require 'classes/Database.php';
 
-?>
-
-<?php
 
 $db = new Database();
 
 $conn = $db->getConn();
 
 $sql = "SELECT * 
-        FROM article 
+        FROM article
         ORDER BY published_at";
 
 $results = $conn->query($sql);
 
+$articles = $results->fetchAll(PDO::FETCH_ASSOC);
 
-if ($results === false) {
-    var_dump($conn->errorInfo());
-} else {
-    $articles = $results->fetchAll(PDO::FETCH_ASSOC);
-}
 
 ?>
 
