@@ -2,6 +2,7 @@
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($_POST['username'] === 'dani' && $_POST['password'] === 'secret') {
+        $_SESSION['is_logged_in'] = true;
         header("Location: index.php");
     } else {
         $error = 'Incorrect login credentials';
