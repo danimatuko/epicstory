@@ -6,11 +6,12 @@
  *
  * @param object  $conn Connection to database
  * @param integer $id the aricle ID
+ * @param string $columns Optional list of columns for the select, defaults to all 
  * @return mixed An associative array containing the article with that ID, or null if not found
  */
-function get_article($conn, $id) {
+function get_article($conn, $id, $columns = '*') {
 
-    $sql = "SELECT * 
+    $sql = "SELECT $columns 
         FROM article 
         WHERE id = ?";
 

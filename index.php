@@ -20,7 +20,7 @@ if ($resluts === false) {
 <?php require 'includes/header.php'; ?>
 
 
-<h1 class="display-3 mb-5">My blog</h1>
+<h1 class="display-3 mb-5">Articles</h1>
 
 
 <?php if (empty($articles)) : ?>

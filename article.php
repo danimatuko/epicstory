@@ -17,17 +17,17 @@ if (isset($_GET['id'])) {
 
 <?php require 'includes/header.php'; ?>
 
-<h1 class="display-3 mb-5">My blog</h1>
-<?php if (($article === null)) : ?>
-<p>No article found.</p>
-<?php else : ?>
-<article>
-    <h1><?= htmlspecialchars($article['title']); ?></h1>
-    <p><?= htmlspecialchars($article['content']); ?></p>
-</article>
-<a href="edit-article.php?id=<?= $article['id']; ?>" class="btn btn-sm btn-outline-info">Edit</a>
-<a href="delete-article.php?id=<?= $article['id']; ?>" class="btn btn-sm btn-outline-info">Delete</a>
+<a href="index.php">Back</a>
 
+<?php if (($article === null)) : ?>
+    <p>No article found.</p>
+<?php else : ?>
+    <article class="py-3">
+        <h1><?= htmlspecialchars($article['title']); ?></h1>
+        <p><?= htmlspecialchars($article['content']); ?></p>
+    </article>
+    <a href="edit-article.php?id=<?= $article['id']; ?>" class="btn btn-sm btn-outline-info">Edit</a>
+    <a href="delete-article.php?id=<?= $article['id']; ?>" class="btn btn-sm btn-outline-danger">Delete</a>
 <?php endif; ?>
 
 <?php require 'includes/footer.php'; ?>
