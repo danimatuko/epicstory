@@ -1,8 +1,12 @@
-<?php require 'includes/database.php'; ?>
-<?php require 'includes/header.php'; ?>
-<?php require 'includes/article.php'; ?>
-
 <?php
+
+require 'includes/database.php';
+require 'includes/header.php';
+require 'includes/article.php';
+
+if (!is_logged_in()) {
+    exit('Unauthorised');
+}
 
 $title =  '';
 $content =  '';

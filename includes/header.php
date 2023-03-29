@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+<?php require 'includes/auth.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +16,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
-        <a class="navbar-brand" href="index.php">CMS</a>
+        <a class="navbar-brand bg-dark px-3 text-light fw-bold" href="index.php">CMS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,10 +24,11 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="container">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.php">Home</a>
+
+                    <?php if (is_logged_in()) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="new-article.php">Post</a>
                     </li>
-                    <?php if ($_SESSION && $_SESSION['is_logged_in']) : ?>
                     <li class="nav-item ">
                         <a class="nav-link" href="logout.php">Logout</a>
                     </li>
@@ -34,7 +36,9 @@
                     <li class="nav-item ">
                         <a class="nav-link" href="login.php">Login</a>
                     </li>
+
                     <?php endif ?>
+
             </div>
             </ul>
         </div>
