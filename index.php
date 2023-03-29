@@ -1,24 +1,27 @@
 <?php
 
 require 'includes/header.php';
-require 'includes/database.php';
+require 'classes/Database.php';
 
 ?>
 
 <?php
 
-$conn = db_connent();
+$db = new Database();
+
+$conn = $db->getConn();
 
 $sql = "SELECT * 
         FROM article 
         ORDER BY published_at";
 
-$resluts = mysqli_query($conn, $sql);
+$results = $conn->query($sql);
 
-if ($resluts === false) {
-    echo mysqli_error($conn);
+
+if ($results === false) {
+    var_dump($conn->errorInfo());
 } else {
-    $articles = mysqli_fetch_all($resluts, MYSQLI_ASSOC);
+    $articles = $results->fetchAll(PDO::FETCH_ASSOC);
 }
 
 ?>
