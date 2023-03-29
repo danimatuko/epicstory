@@ -1,8 +1,10 @@
-<?php require 'includes/database.php'; ?>
-<?php require 'includes/article.php'; ?>
-
-
 <?php
+
+require 'includes/database.php';
+require 'includes/article.php';
+
+
+
 
 $conn = db_connent();
 

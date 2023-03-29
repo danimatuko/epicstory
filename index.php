@@ -19,9 +19,9 @@ if ($resluts === false) {
 
 <?php require 'includes/header.php'; ?>
 
+<?php echo '<pre>', var_dump($_SESSION), '</pre>'; ?>
 
 <h1 class="display-3 mb-5">Articles</h1>
-
 
 <?php if (empty($articles)) : ?>
     <p>No articles found.</p>
