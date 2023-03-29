@@ -48,7 +48,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="w-50 m-auto">
 
-    <h1 class="display-3 mb-5">Edit article</h1>
-    <?php require 'includes/article-form.php'; ?>
+    <h1 class="display-3 mb-5">Delete article</h1>
+    <p>Are you sure you want to delete the article
+        <strong>
+            <?= $title ?>
+        </strong>
+    </p>
+    <form action="delete-article.php?id=<?= $article['id']; ?>" method="post">
+        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+    </form>
 </div>
 <?php require 'includes/footer.php'; ?>

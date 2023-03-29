@@ -1,9 +1,9 @@
-<?php require 'includes/database.php'; ?>
-<?php require 'includes/article.php'; ?>
-<?php require 'includes/header.php'; ?>
-
-
 <?php
+
+require 'includes/database.php';
+require 'includes/article.php';
+require 'includes/header.php';
+
 
 $conn = db_connent();
 

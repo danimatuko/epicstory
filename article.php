@@ -26,9 +26,8 @@ if (isset($_GET['id'])) {
     <p><?= htmlspecialchars($article['content']); ?></p>
 </article>
 <a href="edit-article.php?id=<?= $article['id']; ?>" class="btn btn-sm btn-outline-info">Edit</a>
-<form action="delete-article.php?id=<?= $article['id']; ?>" method="post">
-    <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-</form>
+<a href="delete-article.php?id=<?= $article['id']; ?>" class="btn btn-sm btn-outline-info">Delete</a>
+
 <?php endif; ?>
 
 <?php require 'includes/footer.php'; ?>
