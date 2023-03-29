@@ -1,4 +1,8 @@
-<?php require 'includes/database.php'; ?>
+<?php
+
+require 'includes/header.php';
+require 'includes/database.php'; ?>
+
 <?php $conn = db_connent(); ?>
 
 <?php
@@ -17,9 +21,7 @@ if ($resluts === false) {
 
 ?>
 
-<?php require 'includes/header.php'; ?>
 
-<?php echo '<pre>', var_dump($_SESSION), '</pre>'; ?>
 
 <h1 class="display-3 mb-5">Articles</h1>
 

@@ -1,4 +1,7 @@
-<?php require "includes/header.php";
+<?php
+
+require "includes/header.php";
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($_POST['username'] === 'dani' && $_POST['password'] === 'secret') {
@@ -9,9 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 ?>
-
-
-
 
 
 <div class="w-25 m-auto">
