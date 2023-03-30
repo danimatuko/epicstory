@@ -5,6 +5,7 @@ class Article {
     public $title;
     public $content;
     public $published_at;
+    public $errors = [];
 
     /**
      * Get all articles
@@ -55,7 +56,9 @@ class Article {
      * @return boolean true if the update was successful, false otherwise
      */
     public function update($conn) {
-        $sql = "UPDATE article 
+        if ($this->validate()) {
+
+            $sql = "UPDATE article 
                 SET 
                 title = :title,
                 content = :content,
@@ -63,18 +66,37 @@ class Article {
                 WHERE id = :id";
 
 
-        $stmt = $conn->prepare($sql);
+            $stmt = $conn->prepare($sql);
 
-        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
-        $stmt->bindValue(':title', $this->title, PDO::PARAM_STR);
-        $stmt->bindValue(':content', $this->content, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+            $stmt->bindValue(':title', $this->title, PDO::PARAM_STR);
+            $stmt->bindValue(':content', $this->content, PDO::PARAM_STR);
 
-        if ($this->published_at == '') {
-            $stmt->bindValue(':published_at', $this->published_at, PDO::PARAM_NULL);
+            if ($this->published_at == '') {
+                $stmt->bindValue(':published_at', $this->published_at, PDO::PARAM_NULL);
+            } else {
+                $stmt->bindValue(':published_at', $this->published_at, PDO::PARAM_STR);
+            }
+
+            return $stmt->execute();
         } else {
-            $stmt->bindValue(':published_at', $this->published_at, PDO::PARAM_STR);
+            return false;
         }
+    }
 
-        return $stmt->execute();
+
+    /**
+     * Validate the article properties
+     *
+     * @return boolean true if the current propreties are valid, false otherwise
+     */
+    protected function validate() {
+        if (trim($this->title) == '') {
+            $this->errors[] = 'Title is required';
+        }
+        if (trim($this->content) == '') {
+            $this->errors[] = 'Content is required';
+        }
+        return empty($this->errors);
     }
 }
