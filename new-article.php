@@ -1,46 +1,30 @@
 <?php
 
-require 'includes/database.php';
+require 'classes/Database.php';
 require 'includes/header.php';
-require 'includes/article.php';
+require 'classes/Article.php';
 
 if (!is_logged_in()) {
-    exit('Unauthorised');
+    exit('Unauthorized');
 }
 
-$title =  '';
-$content =  '';
-$published_at = '';
+$article = new Article();
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $conn = db_connent();
+
+    $db = new Database();
+    $conn = $db->getConn();
+
+
     // get form values
-    $title =  $_POST['title'];
-    $content =  trim($_POST['content']); // remove whitespaces cauesd by the html formatting
-    $published_at =  $_POST['published_at'];
+    $article->title = $_POST['title'];
+    $article->content = $_POST['content'];
+    $article->published_at = $_POST['published_at'];
 
-    $errors = validate_article($title, $content, $published_at);
 
-    if (empty($errors)) {
-
-        $sql = "INSERT INTO article (title,content,published_at)
-            VALUES (?,?,?)";
-
-        $stmt = mysqli_prepare($conn, $sql);
-
-        if ($stmt === false) {
-            echo mysqli_error($conn);
-        } else {
-            mysqli_stmt_bind_param($stmt, "sss", $title, $content,  $published_at);
-
-            if (mysqli_stmt_execute($stmt)) {
-                $id = mysqli_insert_id($conn);
-                header("Location: article.php?id=$id");
-                exit;
-            } else {
-                mysqli_stmt_error($stmt);
-            }
-        }
+    if ($article->create($conn)) {
+        header("Location: article.php?id={$article->id}");
     }
 }
 ?>
