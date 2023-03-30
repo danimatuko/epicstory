@@ -1,14 +1,14 @@
 <?php
 
 require 'classes/Database.php';
-require 'includes/article.php';
+require 'classes/Article.php';
 
 $db = new Database();
 
 $conn = $db->getConn();
 
 if (isset($_GET['id'])) {
-    $article = get_article($conn, $_GET['id']);
+    $article = Article::getById($conn, $_GET['id']);
 } else {
     $article = null;
 }
@@ -29,7 +29,6 @@ if (isset($_GET['id'])) {
     <a href="delete-article.php?id=<?= $article['id']; ?>" class="btn btn-sm btn-outline-danger">Delete</a>
 <?php else : ?>
     <p>No article found.</p>
-
 <?php endif; ?>
 
 <?php require 'includes/footer.php'; ?>

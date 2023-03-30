@@ -2,20 +2,15 @@
 
 require 'includes/header.php';
 require 'classes/Database.php';
+require 'classes/Article.php';
 
 
 $db = new Database();
 
 $conn = $db->getConn();
 
-$sql = "SELECT * 
-        FROM article
-        ORDER BY published_at";
 
-$results = $conn->query($sql);
-
-$articles = $results->fetchAll(PDO::FETCH_ASSOC);
-
+$articles = Article::getAll($conn);
 
 ?>
 
