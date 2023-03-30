@@ -22,11 +22,11 @@ if (isset($_GET['id'])) {
 
 <?php if (($article)) : ?>
     <article class="py-3">
-        <h1><?= htmlspecialchars($article['title']); ?></h1>
-        <p><?= htmlspecialchars($article['content']); ?></p>
+        <h1><?= htmlspecialchars($article->title); ?></h1>
+        <p><?= htmlspecialchars($article->content); ?></p>
     </article>
-    <a href="edit-article.php?id=<?= $article['id']; ?>" class="btn btn-sm btn-outline-info">Edit</a>
-    <a href="delete-article.php?id=<?= $article['id']; ?>" class="btn btn-sm btn-outline-danger">Delete</a>
+    <a href="edit-article.php?id=<?= $article->id; ?>" class="btn btn-sm btn-outline-info">Edit</a>
+    <a href="delete-article.php?id=<?= $article->id; ?>" class="btn btn-sm btn-outline-danger">Delete</a>
 <?php else : ?>
     <p>No article found.</p>
 <?php endif; ?>
