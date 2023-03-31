@@ -1,10 +1,10 @@
 <?php
 
 require "includes/header.php";
-
+require "classes/User.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if ($_POST['username'] === 'dani' && $_POST['password'] === 'secret') {
+    if (User::authenticate($_POST['username'], $_POST['password'])) {
         session_regenerate_id(true);
         $_SESSION['is_logged_in'] = true;
         header("Location: index.php");

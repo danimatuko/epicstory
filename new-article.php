@@ -16,7 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $db = new Database();
     $conn = $db->getConn();
 
-
     // get form values
     $article->title = $_POST['title'];
     $article->content = $_POST['content'];

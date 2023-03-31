@@ -7,11 +7,12 @@ class Article {
     public $published_at;
     public $errors = [];
 
+
     /**
      * Get all articles
      *
      * @param object $conn connection to the database       
-     * @return array  associative array of all article records
+     * @return array associative array of all article records
      */
     public static function getAll($conn) {
         $sql = "SELECT * 
@@ -28,15 +29,15 @@ class Article {
      * Get the aricle record based on id
      *
      * @param object  $conn Connection to database
-     * @param integer $id the aricle ID
-     * @param string $columns Optional list of columns for the select, defaults to all 
-     * @return mixed An object containing the article with that ID, or null if not found
+     * @param integer $id the article ID
+     * @param string  $columns Optional list of columns for the select, defaults to all 
+     * @return mixed  object containing the article with that ID, or null if not found
      */
     public static function getById($conn, $id, $columns = '*') {
 
         $sql = "SELECT $columns 
-        FROM article 
-        WHERE id = :id";
+                FROM article 
+                WHERE id = :id";
 
         $stmt = $conn->prepare($sql);
 
@@ -48,6 +49,7 @@ class Article {
             return $stmt->fetch();
         }
     }
+
 
     /**
      * Update the article 
@@ -88,7 +90,7 @@ class Article {
     /**
      * Validate the article properties
      *
-     * @return boolean true if the current propreties are valid, false otherwise
+     * @return boolean true if the current properties are valid, false otherwise
      */
     protected function validate() {
         if (trim($this->title) == '') {
