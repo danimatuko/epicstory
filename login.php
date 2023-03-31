@@ -2,9 +2,15 @@
 
 require "includes/header.php";
 require "classes/User.php";
+require "classes/Database.php";
+
+
+$db = new Database();
+$conn = $db->getConn();
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (User::authenticate($_POST['username'], $_POST['password'])) {
+    if (User::authenticate($conn, $_POST['username'], $_POST['password'])) {
         session_regenerate_id(true);
         $_SESSION['is_logged_in'] = true;
         header("Location: index.php");
@@ -19,9 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <h1 class="display-3 mb-5">Login</h1>
 
     <?php if (!empty($error)) : ?>
-        <div class="alert alert-danger" role="alert">
-            <?= $error ?>
-        </div>
+    <div class="alert alert-danger" role="alert">
+        <?= $error ?>
+    </div>
     <?php endif ?>
 
     <form method="post" novalidate>
@@ -31,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
     <div class=" mb-3">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="passsword" name="password">
+            <input type="password" class="form-control" id="password" name="password">
         </div>
 
         <button type="submit" class="btn btn-dark">Login</button>
