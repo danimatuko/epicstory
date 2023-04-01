@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form action="delete-article.php?id=<?= $article->id; ?>" method="post">
             <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
         </form>
-        <a href="article.php?id=<?= $article->id ?>" class="btn btn-sm btn-outline-secondary">Cancle</a>
+        <a href="article.php?id=<?= $article->id ?>" class="btn btn-sm btn-outline-secondary">Cancel</a>
     </div>
 </div>
 <?php require 'includes/footer.php'; ?>

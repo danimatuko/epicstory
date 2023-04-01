@@ -4,9 +4,7 @@ require 'includes/header.php';
 
 
 
-if (!Auth::isLoggedIn()) {
-    exit('Unauthorized');
-}
+Auth::requireLogin();
 
 $article = new Article();
 

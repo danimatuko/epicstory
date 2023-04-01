@@ -11,8 +11,7 @@ $conn = $db->getConn();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (User::authenticate($conn, $_POST['username'], $_POST['password'])) {
-        session_regenerate_id(true);
-        $_SESSION['is_logged_in'] = true;
+        Auth::login();
         header("Location: index.php");
     } else {
         $error = 'Incorrect login credentials';
