@@ -1,10 +1,3 @@
-<?php
-
-require "init.php";
-session_start();
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +13,7 @@ session_start();
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
 
-        <a class="navbar-brand bg-dark px-3 text-light fw-bold" href="index.php">CMS</a>
+        <a class="navbar-brand bg-dark px-3 text-light fw-bold" href="/">CMS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -31,14 +24,17 @@ session_start();
 
                     <?php if (Auth::isLoggedIn()) : ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="new-article.php">Post</a>
+                            <a class="nav-link" href="/admin/">Admin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/new-article.php">Post</a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="logout.php">Logout</a>
+                            <a class="nav-link" href="/logout.php">Logout</a>
                         </li>
                     <?php else : ?>
                         <li class="nav-item ">
-                            <a class="nav-link" href="login.php">Login</a>
+                            <a class="nav-link" href="/login.php">Login</a>
                         </li>
 
                     <?php endif ?>

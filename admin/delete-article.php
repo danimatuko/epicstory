@@ -1,7 +1,8 @@
 <?php
 
-require 'includes/header.php';
+require '../includes/init.php';
 
+Auth::requireLogin();
 
 $db = new Database();
 
@@ -26,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
+<?php require '../includes/header.php'; ?>
 
 <div class="w-50 m-auto">
 
@@ -42,4 +44,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="article.php?id=<?= $article->id ?>" class="btn btn-sm btn-outline-secondary">Cancel</a>
     </div>
 </div>
-<?php require 'includes/footer.php'; ?>
+<?php require '../includes/footer.php'; ?>

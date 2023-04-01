@@ -2,6 +2,8 @@
 
 require "../includes/init.php";
 
+Auth::requireLogin();
+
 $db = new Database();
 
 $conn = $db->getConn();
@@ -11,24 +13,38 @@ $articles = Article::getAll($conn);
 ?>
 
 
-<?php require "../includes/header.php"; ?>
-<h1 class="display-3 mb-5">Articles</h1>
+<?php require  "../includes/header.php"; ?>
+
+<h1 class="display-3 mb-5">Admin</h1>
 
 <?php if (empty($articles)) : ?>
     <p>No articles found.</p>
 <?php else : ?>
-    <ul class="list-group list-group-flush">
-        <?php foreach ($articles as $article) : ?>
-            <li class="list-group-item">
-                <article>
-                    <a href="article.php?id=<?= $article['id']; ?>">
-                        <h2 class="display-6"><?= htmlspecialchars($article['title']); ?></h2>
-                    </a>
-                    <p><?= htmlspecialchars($article['content']); ?></p>
-                </article>
-            </li>
-        <?php endforeach; ?>
-    </ul>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <?php foreach ($articles as $article) : ?>
+                <tr class="">
+                    <td>
+                        <?= $article['id'] ?>
+                    </td>
+                    <td>
+                        <a href="article.php?id=<?= $article['id']; ?>">
+                            <?= htmlspecialchars($article['title']); ?>
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+
+    </table>
 <?php endif; ?>
+
 
 <?php require '../includes/footer.php'; ?>

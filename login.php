@@ -1,6 +1,6 @@
 <?php
 
-require 'includes/header.php';
+require 'includes/init.php';
 
 
 
@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
+<?php require 'includes/header.php'; ?>
 
 <div class="w-25 m-auto">
     <h1 class="display-3 mb-5">Login</h1>
