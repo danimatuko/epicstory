@@ -16,7 +16,7 @@ class User {
      *
      * @param string $username
      * @param string $password
-     * @return void
+     * @return boolean true if the authentication was successful, false otherwise
      */
     public static function authenticate($conn, $username, $password) {
         $sql = "SELECT * FROM user
@@ -33,7 +33,7 @@ class User {
         $user = $stmt->fetch();
 
         if ($user) {
-            return $user->password === $password;
+            return password_verify($password, $user->password);
         }
     }
 }

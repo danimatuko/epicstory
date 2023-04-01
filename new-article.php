@@ -4,7 +4,7 @@ require 'classes/Database.php';
 require 'includes/header.php';
 require 'classes/Article.php';
 
-if (!is_logged_in()) {
+if (!Auth::isLoggedIn()) {
     exit('Unauthorized');
 }
 
