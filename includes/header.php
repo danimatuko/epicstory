@@ -1,7 +1,7 @@
 <?php
 
+require "includes/init.php";
 session_start();
-require 'classes/Auth.php';
 
 ?>
 

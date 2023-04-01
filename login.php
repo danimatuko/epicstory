@@ -1,8 +1,8 @@
 <?php
 
-require "includes/header.php";
-require "classes/User.php";
-require "classes/Database.php";
+require 'includes/header.php';
+
+
 
 
 $db = new Database();
@@ -25,9 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <h1 class="display-3 mb-5">Login</h1>
 
     <?php if (!empty($error)) : ?>
-    <div class="alert alert-danger" role="alert">
-        <?= $error ?>
-    </div>
+        <div class="alert alert-danger" role="alert">
+            <?= $error ?>
+        </div>
     <?php endif ?>
 
     <form method="post" novalidate>

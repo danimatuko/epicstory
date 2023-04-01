@@ -1,7 +1,7 @@
 <?php
 
 // Initialize the session.
-session_start();
+require "includes/init.php";
 
 // Unset all of the session variables.
 $_SESSION = array();

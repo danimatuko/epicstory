@@ -1,7 +1,7 @@
 <?php
 
-require 'classes/Database.php';
-require 'classes/Article.php';
+require "includes/init.php";
+
 
 $db = new Database();
 

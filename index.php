@@ -1,14 +1,11 @@
 <?php
 
 require 'includes/header.php';
-require 'classes/Database.php';
-require 'classes/Article.php';
 
 
 $db = new Database();
 
 $conn = $db->getConn();
-
 
 $articles = Article::getAll($conn);
 

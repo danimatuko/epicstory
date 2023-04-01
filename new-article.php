@@ -1,8 +1,8 @@
 <?php
 
-require 'classes/Database.php';
 require 'includes/header.php';
-require 'classes/Article.php';
+
+
 
 if (!Auth::isLoggedIn()) {
     exit('Unauthorized');
