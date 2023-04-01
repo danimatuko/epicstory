@@ -1,8 +1,6 @@
 <?php
 
-require 'includes/init.php';
-
-
+require '../includes/init.php';
 
 Auth::requireLogin();
 
@@ -27,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 
-<?php require 'includes/header.php'; ?>
+<?php require '../includes/header.php'; ?>
 
 <div class="w-50 m-auto">
 
@@ -35,4 +33,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <?php require 'includes/article-form.php'; ?>
 </div>
 
-<?php require 'includes/footer.php'; ?>
+<?php require '../includes/footer.php'; ?>

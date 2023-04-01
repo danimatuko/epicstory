@@ -27,7 +27,7 @@
                             <a class="nav-link" href="/admin/">Admin</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/new-article.php">Post</a>
+                            <a class="nav-link" href="/admin/new-article.php">Post</a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link" href="/logout.php">Logout</a>

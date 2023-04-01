@@ -36,6 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <div class="w-50 m-auto">
 
     <h1 class="display-3 mb-5">Edit article</h1>
-    <?php require '../includes/article-form.php'; ?>
+    <?php require 'includes/article-form.php'; ?>
 </div>
 <?php require '../includes/footer.php'; ?>
