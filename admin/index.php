@@ -1,6 +1,6 @@
 <?php
 
-require "includes/init.php";
+require "../includes/init.php";
 
 $db = new Database();
 
@@ -11,8 +11,7 @@ $articles = Article::getAll($conn);
 ?>
 
 
-<?php require 'includes/header.php'; ?>
-
+<?php require "../includes/header.php"; ?>
 <h1 class="display-3 mb-5">Articles</h1>
 
 <?php if (empty($articles)) : ?>
@@ -32,4 +31,4 @@ $articles = Article::getAll($conn);
     </ul>
 <?php endif; ?>
 
-<?php require 'includes/footer.php'; ?>
+<?php require '../includes/footer.php'; ?>

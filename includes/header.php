@@ -1,6 +1,6 @@
 <?php
 
-require "includes/init.php";
+require "init.php";
 session_start();
 
 ?>
@@ -42,9 +42,8 @@ session_start();
                         </li>
 
                     <?php endif ?>
-
+                </ul>
             </div>
-            </ul>
         </div>
     </nav>
     <main class="container py-5">
