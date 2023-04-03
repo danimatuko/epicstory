@@ -6,8 +6,11 @@
  * Data for selecting a page of records
  */
 class Paginator {
+    public $page;
     public $limit;
     public $offset;
+    public $previous;
+    public $next;
 
     /**
      * Constructor
@@ -16,8 +19,11 @@ class Paginator {
      * @param integer $records_per_page Number of records per page
      */
     public function __construct($page, $records_per_page) {
+        $this->page = $this->validatePageNumber($page);
+        $this->previous = $page - 1;
+        $this->next = $page + 1;
         $this->limit = $records_per_page;
-        $this->offset = $records_per_page * ($this->validatePageNumber($page) - 1);
+        $this->offset = $records_per_page * ($this->page - 1);
     }
 
     /**
