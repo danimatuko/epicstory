@@ -6,7 +6,7 @@ $db = new Database();
 
 $conn = $db->getConn();
 
-$articles = Article::getAll($conn);
+$articles = Article::getPage($conn, 4, 8);
 
 ?>
 
