@@ -6,7 +6,7 @@ $db = new Database();
 
 $conn = $db->getConn();
 
-$paginator = new Paginator(3, 4);
+$paginator = new Paginator($_GET['page'] ?? 1, 4);
 
 $articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
 
@@ -18,20 +18,20 @@ $articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
 <h1 class="display-3 mb-5">Articles</h1>
 
 <?php if (empty($articles)) : ?>
-<p>No articles found.</p>
+    <p>No articles found.</p>
 <?php else : ?>
-<ul class="list-group list-group-flush">
-    <?php foreach ($articles as $article) : ?>
-    <li class="list-group-item">
-        <article>
-            <a href="article.php?id=<?= $article['id']; ?>">
-                <h2 class="display-6"><?= htmlspecialchars($article['title']); ?></h2>
-            </a>
-            <p><?= htmlspecialchars($article['content']); ?></p>
-        </article>
-    </li>
-    <?php endforeach; ?>
-</ul>
+    <ul class="list-group list-group-flush">
+        <?php foreach ($articles as $article) : ?>
+            <li class="list-group-item">
+                <article>
+                    <a href="article.php?id=<?= $article['id']; ?>">
+                        <h2 class="display-6"><?= htmlspecialchars($article['title']); ?></h2>
+                    </a>
+                    <p><?= htmlspecialchars($article['content']); ?></p>
+                </article>
+            </li>
+        <?php endforeach; ?>
+    </ul>
 <?php endif; ?>
 
 <?php require 'includes/footer.php'; ?>
