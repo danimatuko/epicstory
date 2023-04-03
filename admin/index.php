@@ -8,8 +8,9 @@ $db = new Database();
 
 $conn = $db->getConn();
 
-$articles = Article::getAll($conn);
+$paginator = new Paginator($_GET['page'] ?? 1, 5, Article::getTotalCount($conn));
 
+$articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
 ?>
 
 
@@ -46,5 +47,6 @@ $articles = Article::getAll($conn);
     </table>
 <?php endif; ?>
 
+<?php require '../includes/pagination.php'; ?>
 
 <?php require '../includes/footer.php'; ?>

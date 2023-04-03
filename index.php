@@ -33,18 +33,7 @@ $articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
         <?php endforeach; ?>
     </ul>
 
-
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            <li class="page-item <?= ($paginator->page == 1) ?  'disabled' : '' ?>">
-                <a class="page-link border-0 " href="?page=<?= $paginator->previous; ?>">&larr; Previous</a>
-            </li>
-
-            <li class="page-item <?= ($paginator->total_pages == $paginator->page) ?  'disabled' : '' ?>">
-                <a class="page-link border-0 " href="?page=<?= $paginator->next; ?>">Next &rarr;</a>
-            </li>
-        </ul>
-    </nav>
+    <?php require 'includes/pagination.php'; ?>
 
 <?php endif; ?>
 
