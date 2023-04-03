@@ -75,6 +75,17 @@ class Article {
         }
     }
 
+    /**
+     * Count all the articles
+     *
+     * @param object $conn Connection to the database   
+     * @return intger The total number of articles
+     */
+    public static function getTotalCount($conn) {
+        $sql = "SELECT COUNT(*) FROM article";
+
+        return $conn->query($sql)->fetchColumn();
+    }
 
     /**
      * Update the article 

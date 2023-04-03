@@ -11,6 +11,8 @@ class Paginator {
     public $offset;
     public $previous;
     public $next;
+    public $total_pages;
+
 
     /**
      * Constructor
@@ -18,8 +20,9 @@ class Paginator {
      * @param integer $page Page number
      * @param integer $records_per_page Number of records per page
      */
-    public function __construct($page, $records_per_page) {
+    public function __construct($page, $records_per_page, $total_records) {
         $this->page = $this->validatePageNumber($page);
+        $this->total_pages = ceil($total_records / $records_per_page);
         $this->previous = $page - 1;
         $this->next = $page + 1;
         $this->limit = $records_per_page;
