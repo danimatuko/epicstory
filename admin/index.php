@@ -8,7 +8,12 @@ $db = new Database();
 
 $conn = $db->getConn();
 
-$paginator = new Paginator($_GET['page'] ?? 1, 5, Article::getTotalCount($conn));
+// Paginator props
+$page = $_GET['page'] ?? 1;
+$records_per_page = 5;
+$total_records = Article::getTotalCount($conn);
+
+$paginator = new Paginator($page, $records_per_page, $total_records);
 
 $articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
 ?>
