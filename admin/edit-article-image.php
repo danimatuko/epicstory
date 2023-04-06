@@ -59,13 +59,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pathinfo = pathinfo($_FILES['file']['name']);
         // sanitizse filename and create path to upload
         $base = $pathinfo['filename'];
+        // Replace any characters that aren't letters, numbers, underscores or hyphens with an underscore
         $base = preg_replace('/[^a-zA-Z0-9_-]/', "_", $base);
 
         $filename = $base . "." . $pathinfo['extension'];
 
         $destination = "../uploads/$filename";
 
-        // handle exisitng file names
+        // Add a numeric suffix to the filename to avoid overwriting existing files
         $i = 1;
 
         while (file_exists($destination)) {
