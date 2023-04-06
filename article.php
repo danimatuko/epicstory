@@ -18,15 +18,20 @@ if (isset($_GET['id'])) {
 
 <?php require 'includes/header.php'; ?>
 
-<a href="index.php">Back</a>
+<div class="w-75 m-auto">
 
-<?php if (($article)) : ?>
-    <article class="py-3">
-        <h1><?= htmlspecialchars($article->title); ?></h1>
-        <p><?= htmlspecialchars($article->content); ?></p>
-    </article>
-<?php else : ?>
-    <p>No article found.</p>
-<?php endif; ?>
+    <a href="index.php">Back</a>
 
+    <?php if (($article)) : ?>
+        <article class="py-3">
+            <h1 class="mb-3"><?= htmlspecialchars($article->title); ?></h1>
+            <?php if ($article->image_path) : ?>
+                <img src="/uploads/<?= htmlspecialchars($article->image_path); ?>" class="img-fluid mb-3" alt="">
+            <?php endif ?>
+            <p class="fs-5"><?= htmlspecialchars($article->content); ?></p>
+        </article>
+    <?php else : ?>
+        <p>No article found.</p>
+    <?php endif; ?>
+</div>
 <?php require 'includes/footer.php'; ?>
