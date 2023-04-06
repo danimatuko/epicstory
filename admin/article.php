@@ -21,14 +21,15 @@ if (isset($_GET['id'])) {
 <a href="index.php">Back</a>
 
 <?php if (($article)) : ?>
-    <article class="py-3">
-        <h1><?= htmlspecialchars($article->title); ?></h1>
-        <p><?= htmlspecialchars($article->content); ?></p>
-    </article>
-    <a href="edit-article.php?id=<?= $article->id; ?>" class="btn btn-sm btn-outline-info">Edit</a>
-    <a href="delete-article.php?id=<?= $article->id; ?>" class="btn btn-sm btn-outline-danger">Delete</a>
+<article class="py-3">
+    <h1><?= htmlspecialchars($article->title); ?></h1>
+    <p><?= htmlspecialchars($article->content); ?></p>
+</article>
+<a href="edit-article.php?id=<?= $article->id; ?>" class="btn btn-sm btn-outline-info">Edit</a>
+<a href="delete-article.php?id=<?= $article->id; ?>" class="btn btn-sm btn-outline-danger">Delete</a>
+<a href="edit-article-image.php?id=<?= $article->id; ?>" class="btn btn-sm btn-outline-dark">Edit image</a>
 <?php else : ?>
-    <p>No article found.</p>
+<p>No article found.</p>
 <?php endif; ?>
 
 <?php require '../includes/footer.php'; ?>
