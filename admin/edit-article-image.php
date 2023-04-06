@@ -1,7 +1,5 @@
 <?php
 
-// phpinfo();
-
 require '../includes/init.php';
 
 Auth::requireLogin();
@@ -80,7 +78,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $file_uploaded = move_uploaded_file($_FILES['file']['tmp_name'], $destination);
 
         if ($file_uploaded) {
-            $article->setImagePath($conn, $filename);
+            $previous_image_path = $article->image_path;
+            // set new image path
+            $pathHasChanged = $article->setImagePath($conn, $filename);
+            // remove the previous image after new image update
+            if ($pathHasChanged && $previous_image_path) {
+                unlink("../uploads/$previous_image_path");
+            }
+
             header("Location: /admin/article.php?id={$article->id}");
         } else {
             throw new Exception('Unable to move uploaded file');
