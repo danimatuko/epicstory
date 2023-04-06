@@ -47,8 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Restrict the file size
-        if ($_FILES['file']['size'] > 9000000) {
-
+        if ($_FILES['file']['size'] > 1000000) {
             throw new Exception('File is too large');
         }
 
@@ -58,8 +57,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mime_type = finfo_file($finfo, $_FILES['file']['tmp_name']);
 
         if (!in_array($mime_type, $mime_types)) {
-
             throw new Exception('Invalid file type');
+        }
+
+        $destination = "../uploads/" . $_FILES['file']['name'];
+        $file_uploaed =   move_uploaded_file($_FILES['file']['tmp_name'], $destination);
+
+        if ($file_uploaed) {
+            echo "File uploaded successfully";
+        } else {
+            throw new Exception('Unable to move uploaded file');
         }
     } catch (Exception $e) {
         echo $e->getMessage();
