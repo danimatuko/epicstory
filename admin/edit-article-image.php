@@ -22,8 +22,6 @@ if (isset($_GET['id'])) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // var_dump($_FILES);
-
     try {
 
         if (empty($_FILES)) {
@@ -47,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Restrict the file size
-        if ($_FILES['file']['size'] > 1000000) {
+        if ($_FILES['file']['size'] > 3000000) {
             throw new Exception('File is too large');
         }
 
@@ -60,11 +58,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             throw new Exception('Invalid file type');
         }
 
-        $destination = "../uploads/" . $_FILES['file']['name'];
-        $file_uploaed =   move_uploaded_file($_FILES['file']['tmp_name'], $destination);
+        $pathinfo = pathinfo($_FILES['file']['name']);
+        // sanitizse filename and create path to upload
+        $base = $pathinfo['filename'];
+        $base = preg_replace('/[^a-zA-Z0-9_-]/', "_", $base);
 
-        if ($file_uploaed) {
-            echo "File uploaded successfully";
+        $filename = $base . "." . $pathinfo['extension'];
+
+        $destination = "../uploads/$filename";
+
+        // handle exisitng file names
+        $i = 1;
+
+        while (file_exists($destination)) {
+            $filename = $base . "-$i." . $pathinfo['extension'];
+            $destination = "../uploads/$filename";
+            $i++;
+        }
+
+        // upload file
+        $file_uploaded = move_uploaded_file($_FILES['file']['tmp_name'], $destination);
+
+        if ($file_uploaded) {
+            $article->setImagePath($conn, $filename);
+            header("Location: /admin/article.php?id={$article->id}");
         } else {
             throw new Exception('Unable to move uploaded file');
         }

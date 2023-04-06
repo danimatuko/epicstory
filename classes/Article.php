@@ -5,6 +5,7 @@ class Article {
     public $title;
     public $content;
     public $published_at;
+    public $image_path;
     public $errors = [];
 
 
@@ -187,5 +188,24 @@ class Article {
         } else {
             return false;
         }
+    }
+    /**
+     * Update the image file property
+     *
+     * @param object $conn Connection to the database   
+     * @param string $filname
+     * @return boolean true if the update was successful, false otherwise 
+     */
+    public function setImagePath($conn, $filname) {
+        $sql = "UPDATE article
+                SET image_path = :image_path
+                WHERE id = :id";
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bindValue(":image_path", $filname, PDO::PARAM_STR);
+        $stmt->bindValue(":id", $this->id, PDO::PARAM_INT);
+
+        return $stmt->execute();
     }
 }
