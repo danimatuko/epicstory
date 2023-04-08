@@ -19,6 +19,8 @@ if (isset($_GET['id'])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    echo '<pre>', var_dump($_FILES), '</pre>';
+    exit;
 
     try {
 
@@ -102,22 +104,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="w-50 m-auto">
     <?php if (isset($error)) : ?>
-        <div class="alert alert-danger text-center" role="alert">
-            <?= $error ?> </div>
+    <div class="alert alert-danger text-center" role="alert">
+        <?= $error ?> </div>
     <?php endif; ?>
 
     <h1 class="display-3 mb-5 text-center">Edit article image</h1>
 
-    <form method="POST" enctype="multipart/form-data" class="w-50 m-auto mb-1">
+    <form method="POST" action="image-uploader.php?id=<?= $article->id ?>" enctype="multipart/form-data"
+        class="w-50 m-auto mb-1">
         <div class="mb-3">
             <label for="file" class="form-label">Image upload</label>
-            <input type="file" class="form-control" id="file" name="file" value="<?= htmlspecialchars($article->image); ?>">
+            <input type="file" class="form-control" id="file" name="file"
+                value="<?= htmlspecialchars($article->image); ?>">
         </div>
 
         <button type="submit" class="btn btn-dark w-100">Upload</button>
     </form>
     <?php if ($article->image_path) : ?>
-        <a href="delete-article-image.php?id=<?= $article->id ?>" class="btn btn-sm btn-danger d-block w-50 m-auto fw-bold">Delete Image</a>
+    <a href="delete-article-image.php?id=<?= $article->id ?>"
+        class="btn btn-sm btn-danger d-block w-50 m-auto fw-bold">Delete Image</a>
     <?php endif ?>
 </div>
 

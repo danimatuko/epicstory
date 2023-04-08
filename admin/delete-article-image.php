@@ -20,6 +20,7 @@ if (isset($_GET['id'])) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+
     if ($article->image_path) {
         $article->setImagePath($conn, null); // passing null will delete the path from the database
         // remove the image 
