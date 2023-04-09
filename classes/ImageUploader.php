@@ -7,6 +7,8 @@ class ImageUploader {
     private $allowedMimeTypes;
     private $maxFileSize;
     private $targetDir;
+    private $pathInfo;
+
 
 
     public function __construct($file) {
@@ -16,6 +18,7 @@ class ImageUploader {
         $this->allowedMimeTypes = ['image/gif', 'image/png', 'image/jpeg'];
         $this->maxFileSize = 1000000; // 1MB
         $this->targetDir = "../uploads/";
+        $this->pathInfo =  pathinfo($this->file['name']);
     }
 
 
@@ -81,20 +84,25 @@ class ImageUploader {
      * @return void
      */
     public function sanitizseFileName() {
-        $pathinfo = pathinfo($this->file['name']);
         // sanitizse filename and create path to upload
-        $base = $pathinfo['filename'];
+        $base = $this->pathInfo['filename'];
         $base = preg_replace('/[^a-zA-Z0-9_-]/', "_", $base);
 
-        $this->filename = $base . "." . $pathinfo['extension'];
+        $this->filename = $base . "." . $this->pathInfo['extension'];
         $this->destination = "../uploads/$this->filename";
+    }
 
+    /**
+     * Add a numeric suffix to the filename to avoid overwriting existing files
+     * 
+     * @return void
+     */
+    public function setUniqueName() {
+        $base = $this->pathInfo['filename'];
 
-        // Add a numeric suffix to the filename to avoid overwriting existing files
         $i = 1;
-
         while (file_exists($this->destination)) {
-            $this->filename = $base . "-$i." . $pathinfo['extension'];
+            $this->filename = $base . "-$i." . $this->pathInfo['extension'];
             $this->destination = "../uploads/$this->filename";
             $i++;
         }
