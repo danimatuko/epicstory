@@ -1,9 +1,14 @@
 <?php
 
+/**
+ * Image uploader
+ * 
+ * Handle image uploads
+ */
 class ImageUploader {
-    public $file;
-    public $filename;
-    public $destination;
+    private $file;
+    private $filename;
+    private $destination;
     private $allowedMimeTypes;
     private $maxFileSize;
     private $targetDir;
@@ -108,7 +113,31 @@ class ImageUploader {
         }
     }
 
-    public function upload() {
+
+    /**
+     * Upload image
+     * 
+     * Set a path to the image in the database
+     *
+     * @param object $conn connection to the database       
+     * @param object $article Article object
+     * @return void
+     */
+    public function upload($conn, $article) {
         $file_uploaded = move_uploaded_file($_FILES['file']['tmp_name'], $this->destination);
+
+        if ($file_uploaded) {
+            $previous_image_path = $article->image_path;
+            // set new image path
+            $pathHasChanged = $article->setImagePath($conn, $this->filename);
+            // remove the previous image after new image update
+            if ($pathHasChanged && $previous_image_path) {
+                unlink("../uploads/$previous_image_path");
+            }
+
+            header("Location: /admin/article.php?id={$article->id}");
+        } else {
+            throw new Exception('Unable to move uploaded file');
+        }
     }
 }

@@ -21,13 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         $imageUploader = new ImageUploader($_FILES['file']);
+
         $imageUploader->uploadErrorCheck();
         $imageUploader->checkSize();
         $imageUploader->checkType();
         $imageUploader->sanitizseFileName();
         $imageUploader->setUniqueName();
-        $imageUploader->upload();
-        echo '<pre>', var_dump($imageUploader->file), '</pre>';
+        $imageUploader->upload($conn, $article);
     } catch (Exception $e) {
         $error =  $e->getMessage();
     }
