@@ -13,7 +13,7 @@ class Database {
         $host = "localhost";
         $db = "cms";
         $username = "danimatuko";
-        $password = "I_X5P2]zqClMRNaC";
+        $password = "J0Ip1TY8@x/PWeC4";
 
         $dsn = "mysql:host=$host;dbname=$db;charset=utf8";
 
