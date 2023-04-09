@@ -19,7 +19,6 @@ if (isset($_GET['id'])) {
 <?php require '../includes/header.php'; ?>
 
 
-
 <div class="w-75 m-auto">
 
     <a href="index.php">Back</a>
@@ -31,7 +30,7 @@ if (isset($_GET['id'])) {
                 <div>
                     <a href="edit-article.php?id=<?= $article->id; ?>" class="btn btn-sm btn-outline-info">Edit</a>
                     <a href="delete-article.php?id=<?= $article->id; ?>" class="btn btn-sm btn-outline-danger">Delete</a>
-                    <a href="edit-article-image.php?id=<?= $article->id; ?>" class="btn btn-sm btn-outline-dark">Edit
+                    <a href="edit-article-image.php?id=<?= $article->id ?>" class="btn btn-sm btn-outline-dark">Edit
                         image</a>
                 </div>
             </div>

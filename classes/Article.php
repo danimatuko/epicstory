@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Article
+ *
+ * A piece of writing for publication
+ */
 class Article {
     public $id;
     public $title;

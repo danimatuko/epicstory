@@ -21,6 +21,7 @@ if (isset($_GET['id'])) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($article->delete($conn)) {
+        unlink("../uploads/$article->image_path");
         header("Location: index.php");
     }
 }
