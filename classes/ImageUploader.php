@@ -4,15 +4,20 @@ class ImageUploader {
     public $file;
     public $filename;
     public $destination;
-    private $allowedMimeTypes = ['image/gif', 'image/png', 'image/jpeg'];
-    private $maxFileSize = 1000000; // 1MB
-    private $targetDir = '..uploads/';
+    private $allowedMimeTypes;
+    private $maxFileSize;
+    private $targetDir;
 
 
     public function __construct($file) {
         $this->file = $file;
-        $this->filename = pathinfo($this->file['name'], PATHINFO_FILENAME);
+        $this->filename =  $this->file['name'];
+        $this->destination =  $this->targetDir . $this->filename;
+        $this->allowedMimeTypes = ['image/gif', 'image/png', 'image/jpeg'];
+        $this->maxFileSize = 1000000; // 1MB
+        $this->targetDir = "../uploads/";
     }
+
 
     /**
      * Handle errors from the $_FILES array: https://www.php.net/manual/en/features.file-upload.errors.php
@@ -83,6 +88,16 @@ class ImageUploader {
 
         $this->filename = $base . "." . $pathinfo['extension'];
         $this->destination = "../uploads/$this->filename";
+
+
+        // Add a numeric suffix to the filename to avoid overwriting existing files
+        $i = 1;
+
+        while (file_exists($this->destination)) {
+            $this->filename = $base . "-$i." . $pathinfo['extension'];
+            $this->destination = "../uploads/$this->filename";
+            $i++;
+        }
     }
 
     public function upload() {
