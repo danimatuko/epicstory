@@ -18,6 +18,9 @@ if (isset($_GET['id'])) {
     exit("id not supplied,aricle not found");
 }
 
+
+echo '<pre>', var_dump($article->getCategories($conn)), '</pre>';
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // get form values
     $article->title = $_POST['title'];
