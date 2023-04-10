@@ -213,4 +213,30 @@ class Article {
 
         return $stmt->execute();
     }
+
+
+    /**
+     * Get the article record based on the ID along with associated categories, if any
+     *
+     * @param object $conn Connection to the database
+     * @param integer $id the article ID
+     *
+     * @return array The article data with categories
+     */
+    public static function getWithCategories($conn, $id) {
+        $sql = "SELECT article.*, category.name as category_name
+                FROM article
+                LEFT JOIN article_category
+                ON article.id = article_category.article_id
+                LEFT JOIN category
+                ON article_category.category_id = category.id
+                WHERE article.id = :id";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
