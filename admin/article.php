@@ -8,7 +8,7 @@ $db = new Database();
 $conn = $db->getConn();
 
 if (isset($_GET['id'])) {
-    $article = Article::getById($conn, $_GET['id']);
+    $article = Article::getWithCategories($conn, $_GET['id']);
 } else {
     $article = null;
 }
@@ -26,18 +26,30 @@ if (isset($_GET['id'])) {
     <?php if (($article)) : ?>
         <article class="py-3">
             <div class="d-flex justify-content-between align-items-center">
-                <h1 class="mb-3"><?= htmlspecialchars($article->title); ?></h1>
+                <h1 class="mb-3"><?= htmlspecialchars($article[0]['title']); ?></h1>
+                <!-- Categories -->
+                <?php if ($article[0]['category_name']) : ?>
+                    <div>
+                        <strong>Categories:</strong>
+                        <?php foreach ($article as $a) : ?>
+                            <?= htmlspecialchars($a['category_name']) ?>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif ?>
                 <div>
-                    <a href="edit-article.php?id=<?= $article->id; ?>" class="btn btn-sm btn-outline-info">Edit</a>
-                    <a href="delete-article.php?id=<?= $article->id; ?>" class="btn btn-sm btn-outline-danger">Delete</a>
-                    <a href="edit-article-image.php?id=<?= $article->id ?>" class="btn btn-sm btn-outline-dark">Edit
+                    <a href="edit-article.php?id=<?= $article[0]['id']; ?>" class="btn btn-sm btn-outline-info">Edit</a>
+                    <a href="delete-article.php?id=<?= $article[0]['id']; ?>" class="btn btn-sm btn-outline-danger">Delete</a>
+                    <a href="edit-article-image.php?id=<?= $article[0]['id'] ?>" class="btn btn-sm btn-outline-dark">Edit
                         image</a>
                 </div>
             </div>
-            <?php if ($article->image_path) : ?>
-                <img src="/uploads/<?= htmlspecialchars($article->image_path); ?>" class="img-fluid mb-3" alt="">
+
+
+            <?php if ($article[0]['image_path']) : ?>
+                <img src="/uploads/<?= htmlspecialchars($article[0]['image_path']); ?>" class="img-fluid mb-3" alt="">
             <?php endif ?>
-            <p class="fs-5"><?= htmlspecialchars($article->content); ?></p>
+
+            <p class="fs-5"><?= htmlspecialchars($article[0]['content']); ?></p>
         </article>
 
     <?php else : ?>
