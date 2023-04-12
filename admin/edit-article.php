@@ -36,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
     if ($article->update($conn)) {
+        $article->resetCategories($conn);
         $article->setCategories($conn, $category_ids);
         header("Location: article.php?id={$article->id}");
     }

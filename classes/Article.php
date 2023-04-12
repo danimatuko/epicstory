@@ -302,4 +302,21 @@ class Article {
             $stmt->execute();
         }
     }
+
+    /**
+     * Unset all categoires related to the current post
+     *
+     * @param object $conn Connection to the database
+     * @return void
+     */
+    public function resetCategories($conn) {
+        $sql = "DELETE FROM article_category
+                WHERE article_id = :id";
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bindValue(":id", $this->id, PDO::PARAM_INT);
+
+        $stmt->execute();
+    }
 }
