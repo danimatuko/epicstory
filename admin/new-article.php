@@ -4,21 +4,27 @@ require '../includes/init.php';
 
 Auth::requireLogin();
 
+$db = new Database();
+$conn = $db->getConn();
+
 $article = new Article();
 
+$categories = Category::getAll($conn);
+$category_ids = [];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    $db = new Database();
-    $conn = $db->getConn();
 
-    // get form values
+
+    // get the form values
     $article->title = $_POST['title'];
     $article->content = $_POST['content'];
     $article->published_at = $_POST['published_at'];
+    $category_ids = $_POST['category'] ?? [];
 
 
     if ($article->create($conn)) {
+        $article->setCategories($conn, $category_ids);
         header("Location: article.php?id={$article->id}");
     }
 }
