@@ -261,4 +261,23 @@ class Article {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+    public function setCategories($conn, $ids) {
+        if ($ids) {
+            $sql = "INSERT IGNORE INTO article_category (article_id,category_id)
+                VALUES({$this->id},:category_id)";
+
+            $stmt = $conn->prepare($sql);
+
+            foreach ($ids as $id) {
+                $stmt->bindValue(':category_id', $id, PDO::PARAM_INT);
+                $stmt->execute();
+            }
+        }
+
+
+
+        // return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
