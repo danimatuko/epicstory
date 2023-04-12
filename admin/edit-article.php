@@ -15,7 +15,6 @@ if (isset($_GET['id'])) {
     $article = Article::getById($conn, $_GET['id']);
     $category_ids = array_column($article->getCategories($conn), 'id');
     $categories = Category::getAll($conn);
-    print_r($category_ids);
 
     if (!$article) {
         exit("aricle not found");

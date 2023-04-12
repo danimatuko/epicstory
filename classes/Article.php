@@ -262,22 +262,44 @@ class Article {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
+    /**
+     * Set article categpries
+     *
+     * @param object $conn Connection to the database
+     * @param array $ids Array of the Category id's
+     * @return void
+     */
     public function setCategories($conn, $ids) {
         if ($ids) {
             $sql = "INSERT IGNORE INTO article_category (article_id,category_id)
-                VALUES({$this->id},:category_id)";
+                    VALUES ";
+
+            /**
+             * Construct the sql qurey to qurey the DB once 
+             */
+
+            // init array values
+            $values = [];
+
+            // create array for each [article_id => category_id]
+            foreach ($ids as $id) {
+                $values[] = "({$this->id}, ?)";
+            }
+
+            // join the arrays to a string seperated by comma
+            $values = implode(",", $values);
+
+            // append values to the sql qurey
+            $sql .= $values;
 
             $stmt = $conn->prepare($sql);
 
-            foreach ($ids as $id) {
-                $stmt->bindValue(':category_id', $id, PDO::PARAM_INT);
-                $stmt->execute();
-            }
+            // bind the values by the index of the placeholder
+            foreach ($ids as $i => $id) {
+                $stmt->bindValue($i + 1, $id, PDO::PARAM_INT);
+            };
+
+            $stmt->execute();
         }
-
-
-
-        // return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
