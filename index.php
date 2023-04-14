@@ -12,7 +12,7 @@ $total_records = Article::getTotalCount($conn);
 
 $paginator = new Paginator($page, $records_per_page, $total_records);
 
-$articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
+$articles = Article::getPage($conn, $paginator->limit, $paginator->offset, true);
 
 ?>
 

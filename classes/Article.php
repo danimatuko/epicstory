@@ -37,11 +37,15 @@ class Article {
      * @param object $conn Connection to the database
      * @param integer $limit Number of records to return
      * @param integer $offset Number of records to skip
+     * @param boolean $only_published only get pulished articles, default false
      * @return array Associative array of the current page article
      */
-    public static function getPage($conn, $limit, $offset) {
+    public static function getPage($conn, $limit, $offset, $only_published = false) {
+        $condition = $only_published ?  "WHERE published_at IS NOT NULL" : "";
+
         $sql = "SELECT * 
                 FROM article
+                $condition               
                 ORDER BY published_at
                 LIMIT :limit
                 OFFSET :offset";
@@ -220,7 +224,7 @@ class Article {
      *
      * @param object $conn Connection to the database
      * @param integer $id the article ID
-     *
+     * @param boolean $only_published only get pulished articles, default false
      * @return array The article data with categories
      */
     public static function getWithCategories($conn, $id, $only_published = false) {
