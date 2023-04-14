@@ -23,7 +23,12 @@ if (isset($_GET['id'])) {
     <a href="index.php">Back</a>
     <?php if (($article)) : ?>
     <article class="py-3">
-        <small class="text-muted"><?= 'Published at: ' . $article[0]['published_at'] ?></small>
+        <time datetime="<?= $article[0]['published_at']; ?>">
+            <?php
+                $datetime = new DateTime($article[0]['published_at']);
+                echo $datetime->format("j F Y");
+                ?>
+        </time>
         <h1 class="mb-3"><?= htmlspecialchars($article[0]['title']); ?></h1>
         <!-- Categories -->
         <?php if ($article[0]['category_name']) : ?>
