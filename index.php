@@ -3,7 +3,6 @@
 require "includes/init.php";
 
 $db = new Database();
-
 $conn = $db->getConn();
 
 // Paginator props

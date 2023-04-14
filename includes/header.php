@@ -11,6 +11,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"
         defer>
     </script>
+    <script src="/js/index.js" defer></script>
 
     <title>PHP - CMS</title>
 </head>
