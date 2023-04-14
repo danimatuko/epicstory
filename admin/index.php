@@ -31,6 +31,7 @@ $articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Title</th>
+                <th scope="col">Publish Date</th>
             </tr>
         </thead>
         <tbody>
@@ -44,6 +45,12 @@ $articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
                         <a href="article.php?id=<?= $article['id']; ?>">
                             <?= htmlspecialchars($article['title']); ?>
                         </a>
+                    </td>
+                    <td>
+                        <?php
+                        $datetime = new DateTime($article['published_at']);
+                        echo  $article['published_at'] ? $datetime->format("j F Y") : "Not published";
+                        ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

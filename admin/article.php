@@ -25,12 +25,12 @@ if (isset($_GET['id'])) {
 
     <?php if (($article)) : ?>
     <article class="py-3">
-        <?php
-            $datetime = new DateTime($article[0]['published_at']);
-            echo $datetime->format("j F Y");
-            ?>
-        <br>
-        <small class="text-muted"><?= 'Published at: ' . $article[0]['published_at'] ?></small>
+        <time datetime="<?= $article[0]['published_at'] ?>">
+            <?php
+                $datetime = new DateTime($article[0]['published_at']);
+                echo  $article[0]['published_at'] ? $datetime->format("j F Y") : "Not published";
+                ?>
+        </time>
         <div class="d-flex justify-content-between align-items-center">
             <h1 class="mb-3"><?= htmlspecialchars($article[0]['title']); ?></h1>
             <!-- Categories -->
