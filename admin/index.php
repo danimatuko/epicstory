@@ -47,10 +47,13 @@ $articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
                         </a>
                     </td>
                     <td>
-                        <?php
-                        $datetime = new DateTime($article['published_at']);
-                        echo  $article['published_at'] ? $datetime->format("j F Y") : "Not published";
-                        ?>
+                        <?php $datetime = new DateTime($article['published_at']); ?>
+
+                        <?php if ($article['published_at']) :  ?>
+                            <?= $datetime->format("j F Y"); ?>
+                        <?php else : ?>
+                            <button type="button" data-id="<?= $article['id']; ?>" class="btn btn-dark btn-sm font-monospace" onClick="onPublish(<?= $article['id']; ?>)">Publish</button>
+                        <?php endif; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

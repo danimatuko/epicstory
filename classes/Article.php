@@ -327,4 +327,28 @@ class Article {
 
         $stmt->execute();
     }
+
+    /**
+     * Publish article
+     *
+     * @param object $conn Connection to the database
+     * @return string $published_at the publish date and time
+     */
+    public function publish($conn) {
+        $sql = "UPDATE article 
+                SET published_at =  :published_at
+                WHERE id = :id";
+
+        // set current date and time
+        $published_at = date("Y-m-d H:i:s");
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bindValue(":id", $this->id, PDO::PARAM_INT);
+        $stmt->bindValue(":published_at", $published_at, PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            return $published_at;
+        }
+    }
 }

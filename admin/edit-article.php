@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // get form values
+    // Get form values
     $article->title = $_POST['title'];
     $article->content = $_POST['content'];
     $article->published_at = $_POST['published_at'];
