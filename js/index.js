@@ -14,7 +14,7 @@ async function deleteImage(id) {
     await fetch(`delete-article-image.php?id=${id}`, {
       method: "POST",
     });
-    window.location.href = "index.php";
+    window.location.href = `/admin/article.php?id=${id}`;
   } catch (error) {
     console.log(error);
   }

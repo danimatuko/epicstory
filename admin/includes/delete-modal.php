@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Article may come as an object or an array, so data data is stored accordingly in $data
+ * Article may come as an object or an array, so the data is stored accordingly in $data
  */
 
 $data = [];
