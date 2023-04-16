@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  Database constant
+ *  Database configuration
  */
 define("HOST", "localhost");
 define("DB", "cms");
@@ -9,7 +9,7 @@ define("USERNAME", "danimatuko");
 define("PASSWORD", "J0Ip1TY8@x/PWeC4");
 
 /**
- * SMTP constants
+ * SMTP configuration
  */
 define("SMTP_HOST", "sandbox.smtp.mailtrap.io");
 define("SMTP_USER", "27609ce605ecc2");

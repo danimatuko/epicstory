@@ -1,3 +1,6 @@
 php_value upload_max_filesize 3M
 php_flag display_startup_errors off
 
+<Files config.php>
+    Deny from all
+</Files>
