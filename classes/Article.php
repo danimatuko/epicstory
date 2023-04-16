@@ -7,8 +7,8 @@
  */
 class Article {
     public $id;
-    public $title;
-    public $content;
+    public $title = "";
+    public $content = "";
     public $published_at;
     public $image_path;
     public $errors = [];

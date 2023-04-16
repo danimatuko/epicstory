@@ -3,12 +3,6 @@
 require 'includes/init.php';
 
 
-
-
-$db = new Database();
-$conn = $db->getConn();
-
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (User::authenticate($conn, $_POST['username'], $_POST['password'])) {
         Auth::login();
