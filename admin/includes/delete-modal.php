@@ -5,7 +5,7 @@
  */
 
 $data = [];
-$data["image_only"] = str_contains($_SERVER['REQUEST_URI'], "image");
+$data["image_only"] = strpos($_SERVER['REQUEST_URI'], "image");
 $data['title'] = $data["image_only"] ? $article->title : $article[0]['title'];
 $data['id'] = $data["image_only"] ? $article->id : $article[0]['id'];
 
