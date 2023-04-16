@@ -4,11 +4,6 @@ require '../includes/init.php';
 
 Auth::requireLogin();
 
-$db = new Database();
-
-$conn = $db->getConn();
-
-
 
 if (isset($_GET['id'])) {
 

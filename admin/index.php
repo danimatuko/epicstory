@@ -4,9 +4,6 @@ require "../includes/init.php";
 
 Auth::requireLogin();
 
-$db = new Database();
-
-$conn = $db->getConn();
 
 // Paginator props
 $page = $_GET['page'] ?? 1;

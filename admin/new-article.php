@@ -4,9 +4,6 @@ require '../includes/init.php';
 
 Auth::requireLogin();
 
-$db = new Database();
-$conn = $db->getConn();
-
 $article = new Article();
 
 $categories = Category::getAll($conn);

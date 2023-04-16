@@ -38,13 +38,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {
             //Server settings
-            $mail->isSMTP();                                  //Send using SMTP
-            $mail->Host       = 'sandbox.smtp.mailtrap.io';   //Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                         //Enable SMTP authentication
-            $mail->Username   = '27609ce605ecc2';             //SMTP username
-            $mail->Password   = 'fc19d53f971436';             //SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;  //Enable implicit TLS encryption
-            $mail->Port       = 2525;                         //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            $mail->isSMTP();                                      //Send using SMTP
+            $mail->Host       = SMTP_HOST;                        //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                             //Enable SMTP authentication
+            $mail->Username   = SMTP_USER;                        //SMTP username
+            $mail->Password   = SMTP_PASSWORD;                    //SMTP password
+            //$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;    //Enable implicit TLS encryption
+            $mail->Port       = 2525;                             //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             $mail->setFrom($email, 'Mailer');
             $mail->addAddress('matuko305@gmail.com', 'PHP-CMS'); //Add a recipient

@@ -2,7 +2,7 @@
 
 require "includes/init.php";
 
-$db = new Database();
+$db = new Database(HOST, DB, USERNAME, PASSWORD);
 $conn = $db->getConn();
 
 // Paginator props

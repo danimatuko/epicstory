@@ -1,4 +1,5 @@
 <?php
+require dirname(__DIR__)  . "/config.php";
 
 /**
  * initialisation
@@ -11,3 +12,7 @@ spl_autoload_register(function ($class) {
 });
 
 session_start();
+
+$db = new Database(HOST, DB, USERNAME, PASSWORD);
+
+$conn = $db->getConn();
