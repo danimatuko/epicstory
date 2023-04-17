@@ -28,10 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <?php require '../includes/header.php'; ?>
 
-<div class="w-50 m-auto">
+<div class="container">
+    <div class="row">
+        <div class="col col-md-8 mx-auto">
 
-    <h1 class="display-3 mb-5">New article</h1>
-    <?php require 'includes/article-form.php'; ?>
+            <h1 class="display-3 mb-5">New article</h1>
+            <?php require 'includes/article-form.php'; ?>
+        </div>
+    </div>
 </div>
 
 <?php require '../includes/footer.php'; ?>

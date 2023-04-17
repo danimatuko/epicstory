@@ -18,33 +18,39 @@ $articles = Article::getPage($conn, $paginator->limit, $paginator->offset, true)
 
 
 <?php require 'includes/header.php'; ?>
-<div class="container w-75">
-    <h1 class="display-3 mb-5">Articles</h1>
+<div class="container">
+    <div class="row">
+        <div class="col col-md-8 mx-auto">
 
-    <?php if (empty($articles)) : ?>
-        <p>No articles found.</p>
-    <?php else : ?>
-        <ul class="list-group list-group-flush mb-5">
-            <?php foreach ($articles as $article) : ?>
-                <li class="list-group-item">
-                    <time datetime="<?= $article['published_at']; ?>">
-                        <?php
-                        $datetime = new DateTime($article['published_at']);
-                        echo $datetime->format("j F Y");
-                        ?>
-                    </time>
-                    <article>
-                        <a href="article.php?id=<?= $article['id']; ?>">
-                            <h2 class="mb-3 font-monospace"><?= htmlspecialchars($article['title']); ?></h2>
-                        </a>
-                        <p><?= htmlspecialchars($article['content']); ?></p>
-                    </article>
-                </li>
-            <?php endforeach; ?>
-        </ul>
+            <h1 class="display-3 mb-5">Articles</h1>
 
-        <?php require 'includes/pagination.php'; ?>
+            <?php if (empty($articles)) : ?>
+                <p>No articles found.</p>
+            <?php else : ?>
+                <ul class="list-group list-group-flush mb-5">
+                    <?php foreach ($articles as $article) : ?>
+                        <li class="list-group-item">
+                            <time datetime="<?= $article['published_at']; ?>">
+                                <?php
+                                $datetime = new DateTime($article['published_at']);
+                                echo $datetime->format("j F Y");
+                                ?>
+                            </time>
+                            <article>
+                                <a href="article.php?id=<?= $article['id']; ?>">
+                                    <h2 class="mb-3 font-monospace"><?= htmlspecialchars($article['title']); ?></h2>
+                                </a>
+                                <p><?= htmlspecialchars($article['content']); ?></p>
+                            </article>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
 
-    <?php endif; ?>
+                <?php require 'includes/pagination.php'; ?>
+
+            <?php endif; ?>
+        </div>
+    </div>
+
 </div>
 <?php require 'includes/footer.php'; ?>

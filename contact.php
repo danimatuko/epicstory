@@ -63,41 +63,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <?php require "includes/header.php"; ?>
-<div class="container w-50 mt-5">
+<div class="container">
+    <div class="row">
+        <div class="col col-md-8 mx-auto">
+            <?php if ($sent) : ?>
+                <p>Message has been sent</p>
+            <?php else : ?>
 
-    <?php if ($sent) : ?>
-        <p>Message has been sent</p>
-    <?php else : ?>
-
-        <?php if (!empty($errors)) : ?>
-            <div class="alert alert-danger" role="alert">
-                <ul>
-                    <?php foreach ($errors as $error) : ?>
-                        <li> <?= $error; ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        <?php endif; ?>
+                <?php if (!empty($errors)) : ?>
+                    <div class="alert alert-danger" role="alert">
+                        <ul>
+                            <?php foreach ($errors as $error) : ?>
+                                <li> <?= $error; ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
 
 
 
-        <h1 class="display-6 mb-4">Contact</h1>
-        <form method="post" novalidate>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="<?= htmlspecialchars($email) ?>">
-            </div>
-            <div class="mb-3">
-                <label for="subject" class="form-label">Subject</label>
-                <input type="text" class="form-control" id="subject" name="subject" value="<?= htmlspecialchars($subject) ?>">
-            </div>
-            <div class="mb-3">
-                <label for="message">Message</label>
-                <textarea class="form-control" id="message" name="message" rows=4><?= htmlspecialchars(trim($message)) ?>
+                <h1 class="display-6 mb-4">Contact</h1>
+                <form method="post" novalidate>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="<?= htmlspecialchars($email) ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" class="form-control" id="subject" name="subject" value="<?= htmlspecialchars($subject) ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows=4><?= htmlspecialchars(trim($message)) ?>
         </textarea>
-            </div>
-            <button type="submit" class="btn btn-dark w-100 mt-3 font-monospace fw-bold">Send</button>
-        </form>
+                    </div>
+                    <button type="submit" class="btn btn-dark w-100 mt-3 font-monospace fw-bold">Send</button>
+                </form>
+        </div>
+    </div>
 </div>
 <?php endif; ?>
 
