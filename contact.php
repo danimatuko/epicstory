@@ -43,11 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mail->SMTPAuth   = true;                             //Enable SMTP authentication
             $mail->Username   = SMTP_USER;                        //SMTP username
             $mail->Password   = SMTP_PASSWORD;                    //SMTP password
-            //$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;    //Enable implicit TLS encryption
-            $mail->Port       = 2525;                             //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-            $mail->setFrom($email, 'Mailer');
-            $mail->addAddress('matuko305@gmail.com', 'PHP-CMS'); //Add a recipient
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;      //Enable implicit TLS encryption
+            $mail->Port       = 465;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            $mail->setFrom($email, 'Epicstory visitor');
+            $mail->addAddress('matuko305@gmail.com', 'Epicstory Admin');  //Add a recipient
             $mail->addReplyTo($email, 'Information');
             $mail->Subject = $subject;
             $mail->Body    = $message;
