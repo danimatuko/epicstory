@@ -10,10 +10,11 @@ The app provides the basic functions you'd expect from an blog.
 
 
 ## 🚀 Features
-- CRUD operations for article
+- CRUD operations for articles
 - CRUD operations for article image
 - CRUD operations for categoires
 - View total articles
+- Image upload
 - Pagination 
 - Contact form for sending email
 - Login
