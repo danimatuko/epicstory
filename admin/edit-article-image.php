@@ -41,8 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="alert alert-danger text-center" role="alert">
                     <?= $error ?> </div>
             <?php endif; ?>
+            <a href="<?= "article.php?id={$article->id}" ?>"> Back</a>
 
-            <h1 class="display-3 mb-5 text-center">Edit article image</h1>
+            <h1 class="display-3 mb-3">Edit article image</h1>
 
             <form method="POST" enctype="multipart/form-data" class="mb-1">
                 <div class="mb-3">
