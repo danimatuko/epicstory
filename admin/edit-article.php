@@ -43,8 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <div class="container">
     <div class="row">
-        <a href="<?= "article.php?id={$article->id}" ?>"> Back</a>
         <div class="col col-md-8 mx-auto">
+            <a href="<?= "article.php?id={$article->id}" ?>"> Back</a>
             <h1 class="display-3 mb-5">Edit article</h1>
             <?php require 'includes/article-form.php'; ?>
         </div>
