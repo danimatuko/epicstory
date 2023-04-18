@@ -4,7 +4,7 @@
  *  Database configuration
  */
 define("HOST", "localhost");
-define("DB", "cms");
+define("DB", "epicstory");
 define("USERNAME", "danimatuko");
 define("PASSWORD", "J0Ip1TY8@x/PWeC4");
 /**
